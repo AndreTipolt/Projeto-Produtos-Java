@@ -7,18 +7,18 @@ import java.util.Scanner;
 public class Main {
 
     private final static Scanner scanner = new Scanner(System.in);
-
     private static Vetor vetorProdutos;
+
     public static void main(String[] args) throws Exception{
 
 
         Integer tamanhoVetor = determinarTamanhoVetor();
-        vetorProdutos = new Vetor(tamanhoVetor);
+        vetorProdutos = new Vetor(tamanhoVetor); // Determina o tamanho do vetor e instanciando ele
 
         while (true){
-            Integer opcaoUsuario = opcaoUsuario();
+            Integer opcaoUsuario = opcaoUsuario(); // Usuario pode digitar um nuymero de -1 até 5
 
-            if(opcaoUsuario == -1){
+            if(opcaoUsuario == -1){ // Ele quer sair da execução
                 break;
             }
 
@@ -31,25 +31,10 @@ public class Main {
         }
     }
 
-    public static void limparTerminal(){
-        try {
-            final String os = System.getProperty("os.name");
-
-            if (os.contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                Runtime.getRuntime().exec("clear");
-            }
-        } catch (Exception e) {
-            System.out.println("Erro ao limpar o console: " + e.getMessage());
-        }
-
-    }
-
     public static Integer determinarTamanhoVetor(){
 
-        Integer tamanhoVetor = null;
-        while (tamanhoVetor == null){ // Determinar o tamanho do vetor
+        Integer tamanhoVetor;
+        while (true){ // Determinar o tamanho do vetor
             try{
 
                 System.out.println("\nInforme o tamanho da lista de produtos: ");
@@ -58,9 +43,9 @@ public class Main {
                 if(tamanhoVetor <= 0){
                     throw new Exception("Tamanho inválido do vetor");
                 }
+                break;
 
             } catch (Exception e){
-                tamanhoVetor = null;
                 e.printStackTrace();
             }
         }
@@ -160,11 +145,11 @@ public class Main {
                 } catch (Exception e){
 
                     e.printStackTrace();
-                    continue;
+                    continue; // Caso não exista o produto ele vai perguntar novamente um novo indice
                 }
 
                 System.out.println("\n[0 -> Não quero escolher outro produto], [1 -> Quero excluir esse produto]");
-                System.out.println("\n" + produtoAExcluir);
+                System.out.println("\n" + produtoAExcluir); // Mostra de qual produto ele quer remover
 
                 System.out.println("Deseja excLuir esse produto:");
                 Integer flagExcluirProduto = scanner.nextInt();
@@ -242,6 +227,7 @@ public class Main {
             }
 
         }
+        return;
     }
 
 
