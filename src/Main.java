@@ -15,10 +15,16 @@ public class Main {
         Integer tamanhoVetor = determinarTamanhoVetor();
         vetorProdutos = new Vetor(tamanhoVetor);
 
-        Integer opcaoUsuario = opcaoUsuario();
+        Integer opcaoUsuario;
+        while (true){
+            opcaoUsuario = opcaoUsuario();
 
-        if(opcaoUsuario == 0){
-            adicionarProduto();
+            if(opcaoUsuario == -1){
+                break;
+            }
+
+            if(opcaoUsuario == 0) adicionarProduto();
+            else if (opcaoUsuario == 1) listarProdutos();
         }
     }
 
@@ -62,12 +68,14 @@ public class Main {
         Integer opcaoUsuario = null;
         while (opcaoUsuario == null){
             try{
-                System.out.println("[0 -> Adicionar um produto]");
+                System.out.println("[-1 -> Sair]");
+                System.out.println("[ 0 -> Adicionar um produto]");
+                System.out.println("[ 1 -> Listar produtos]");
                 System.out.println("\nO que você deseja fazer: ");
 
                 opcaoUsuario = scanner.nextInt();
 
-                if(opcaoUsuario < 0 || opcaoUsuario > 4){ // Validar se esta dentro das opções
+                if(opcaoUsuario < -1 || opcaoUsuario > 4){ // Validar se esta dentro das opções
                     throw new Exception("Opção inválida");
                 }
 
@@ -113,6 +121,19 @@ public class Main {
                 e.printStackTrace();
             }
         }
+        return;
+    }
+
+    public static void listarProdutos(){
+
+        String toStringVetorProdutos = vetorProdutos.toString();
+
+        if(toStringVetorProdutos.equals("[]")){
+            System.out.println("\nNão existem produtos cadastrados até o momento");
+            return;
+        }
+
+        System.out.println(toStringVetorProdutos);
         return;
     }
 }
