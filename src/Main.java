@@ -133,6 +133,11 @@ public class Main {
 
     public static void excluirProduto(){
 
+        if(vetorProdutos.tamanho() == 0){
+            System.out.println("\nNão existe produtos no vetor");
+            return;
+        }
+
         while (true){
             System.out.println("\nDigite o indíce do produto que deseja excluir: ");
             Integer indiceProduto = scanner.nextInt();
@@ -172,6 +177,11 @@ public class Main {
     }
 
     public static void buscarProduto(){
+
+        if(vetorProdutos.tamanho() == 0){
+            System.out.println("\nNão existe produtos no vetor");
+            return;
+        }
 
         while (true){
             System.out.println("\nDigite o indíce do produto que deseja buscar: ");
