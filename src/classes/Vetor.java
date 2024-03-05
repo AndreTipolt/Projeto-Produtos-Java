@@ -70,7 +70,7 @@ public class Vetor {
         }
     }
 
-    public int busca1 (String elemento){
+    public int busca1 (Object elemento){
 
         for (int i=0; i < tamanho; i++){
 
@@ -83,7 +83,7 @@ public class Vetor {
         return -1;
     }
 
-    public boolean adicionaInicio(int posicao, String elemento) throws Exception{
+    public boolean adicionaInicio(int posicao, Object elemento) throws Exception{
 
         this.aumentaCapacidade();
 

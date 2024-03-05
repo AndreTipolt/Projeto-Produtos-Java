@@ -26,6 +26,8 @@ public class Main {
             else if (opcaoUsuario == 1) listarProdutos();
             else if (opcaoUsuario == 2) excluirProduto();
             else if (opcaoUsuario == 3) buscarProduto();
+            else if (opcaoUsuario == 4) exibirTamanho();
+            else if (opcaoUsuario == 5) adicionarNoInicioDoVetor();
         }
     }
 
@@ -74,11 +76,13 @@ public class Main {
                 System.out.println("[ 1 -> Listar produtos]");
                 System.out.println("[ 2 -> Excluir produto]");
                 System.out.println("[ 3 -> Buscar um produto]");
+                System.out.println("[ 4 -> Exibir tamanho do vetor]");
+                System.out.println("[ 5 -> Adicionar no inicio do vetor]");
                 System.out.println("\nO que você deseja fazer: ");
 
                 opcaoUsuario = scanner.nextInt();
 
-                if(opcaoUsuario < -1 || opcaoUsuario > 4){ // Validar se esta dentro das opções
+                if(opcaoUsuario < -1 || opcaoUsuario > 5){ // Validar se esta dentro das opções
                     throw new Exception("Opção inválida");
                 }
 
@@ -188,7 +192,8 @@ public class Main {
 
             try {
 
-                vetorProdutos.remove(indiceProduto);
+                Produto produto = (Produto) vetorProdutos.busca(indiceProduto);
+                System.out.println(produto);
                 break;
             } catch (Exception e){
 
@@ -197,4 +202,47 @@ public class Main {
         }
         return;
     }
+
+    public static void exibirTamanho(){
+        System.out.println("\nO tamanho do vetor atual é de " + vetorProdutos.tamanho() + " elementos");
+    }
+
+    public static void adicionarNoInicioDoVetor(){
+
+        while (true){
+
+            try{
+                System.out.println("\nDigite o nome do produto:");
+                String nomeProduto = scanner.next();
+
+                System.out.println("\nDigite o preço do produto: (use vírgula [,] ao invés de [.])");
+                Double preco = scanner.nextDouble();
+
+                System.out.println("\nDigite a categoria do produto:");
+                String categoria = scanner.next();
+
+                if(nomeProduto.equals(" ") || nomeProduto.equals("")){
+                    throw new Exception("Nome do produto não pode ser vazio");
+                }
+
+                if(categoria.equals(" ") || categoria.equals("")){
+                    throw new Exception("Categoria não pode ser vazia");
+                }
+
+                Produto novoProduto = new Produto(nomeProduto, preco, categoria);
+
+                System.out.println("\nEm qual posição você quer colocar nesse vetor: ");
+                Integer posicaoVetor = scanner.nextInt();
+
+                vetorProdutos.adicionaInicio(posicaoVetor, novoProduto);
+                break;
+            } catch (Exception e){
+                e.printStackTrace();
+                continue;
+            }
+
+        }
+    }
+
+
 }
