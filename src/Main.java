@@ -1,22 +1,25 @@
+import classes.Produto;
 import classes.Vetor;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
 
     private final static Scanner scanner = new Scanner(System.in);
+
+    private static Vetor vetorProdutos;
     public static void main(String[] args) throws Exception{
 
-
-        Vetor vetorProdutos;
 
         Integer tamanhoVetor = determinarTamanhoVetor();
         vetorProdutos = new Vetor(tamanhoVetor);
 
         Integer opcaoUsuario = opcaoUsuario();
 
-        limparTerminal();
-
+        if(opcaoUsuario == 0){
+            adicionarProduto();
+        }
     }
 
     public static void limparTerminal(){
@@ -73,5 +76,43 @@ public class Main {
             }
         }
         return opcaoUsuario;
+    }
+
+    public static void adicionarProduto(){
+
+        while (true){
+
+            System.out.println("Adicionar Produto");
+
+            try{
+
+                System.out.println("\nDigite o nome do produto:");
+                String nomeProduto = scanner.next();
+
+                System.out.println("\nDigite o preço do produto: (use vírgula [,] ao invés de [.])");
+                Double preco = scanner.nextDouble();
+
+                System.out.println("\nDigite a categoria do produto:");
+                String categoria = scanner.next();
+
+                if(nomeProduto.equals(" ") || nomeProduto.equals("")){
+                    throw new Exception("Nome do produto não pode ser vazio");
+                }
+
+                if(categoria.equals(" ") || categoria.equals("")){
+                    throw new Exception("Categoria não pode ser vazia");
+                }
+
+                Produto novoProduto = new Produto(nomeProduto, preco, categoria);
+
+                vetorProdutos.adiciona(novoProduto);
+                break;
+
+            } catch(Exception e){
+
+                e.printStackTrace();
+            }
+        }
+        return;
     }
 }

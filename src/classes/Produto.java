@@ -2,30 +2,19 @@ package classes;
 
 public class Produto {
 
-    private String id;
-
     private String nome;
 
     private Double preco;
 
-    private Categoria categoria;
+    private String categoria;
 
     public Produto() {
     }
 
-    public Produto(String id, String nome, Double preco, Categoria categoria) {
-        this.id = id;
+    public Produto(String nome, Double preco, String categoria) {
         this.nome = nome;
         this.preco = preco;
         this.categoria = categoria;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -44,19 +33,18 @@ public class Produto {
         this.preco = preco;
     }
 
-    public Categoria getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 
     @Override
     public String toString() {
         return "Produto{" +
-                "id='" + id + '\'' +
-                ", nome='" + nome + '\'' +
+                "nome='" + nome + '\'' +
                 ", preco=" + preco +
                 ", categoria='" + categoria + '\'' +
                 '}';
