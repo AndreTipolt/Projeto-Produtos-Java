@@ -15,9 +15,8 @@ public class Main {
         Integer tamanhoVetor = determinarTamanhoVetor();
         vetorProdutos = new Vetor(tamanhoVetor);
 
-        Integer opcaoUsuario;
         while (true){
-            opcaoUsuario = opcaoUsuario();
+            Integer opcaoUsuario = opcaoUsuario();
 
             if(opcaoUsuario == -1){
                 break;
@@ -25,6 +24,7 @@ public class Main {
 
             if(opcaoUsuario == 0) adicionarProduto();
             else if (opcaoUsuario == 1) listarProdutos();
+            else if (opcaoUsuario == 2) excluirProduto();
         }
     }
 
@@ -71,6 +71,7 @@ public class Main {
                 System.out.println("[-1 -> Sair]");
                 System.out.println("[ 0 -> Adicionar um produto]");
                 System.out.println("[ 1 -> Listar produtos]");
+                System.out.println("[ 2 -> Excluir produto]");
                 System.out.println("\nO que você deseja fazer: ");
 
                 opcaoUsuario = scanner.nextInt();
@@ -135,5 +136,23 @@ public class Main {
 
         System.out.println(toStringVetorProdutos);
         return;
+    }
+
+    public static void excluirProduto(){
+
+
+
+        while (true){
+            System.out.println("\nDigite o indíce do produto que deseja exlcuir: ");
+            Integer indiceProduto = scanner.nextInt();
+
+            try {
+
+                vetorProdutos.remove(indiceProduto);
+            } catch (Exception e){
+
+                e.printStackTrace();
+            }
+        }
     }
 }
