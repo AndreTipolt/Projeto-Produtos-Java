@@ -201,7 +201,7 @@ public class Main {
     }
 
     public static void exibirTamanho(){
-        System.out.println("\nO tamanho do vetor atual é de " + vetorProdutos.tamanho() + " elementos");
+        System.out.println("\nO tamanho do vetor atual é de " + vetorProdutos.tamanho() + " elemento(s)");
     }
 
     public static void adicionarNoInicioDoVetor(){
