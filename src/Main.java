@@ -53,8 +53,8 @@ public class Main {
     }
 
     public static Integer opcaoUsuario(){
-        Integer opcaoUsuario = null;
-        while (opcaoUsuario == null){
+        Integer opcaoUsuario;
+        while (true){
             try{
                 System.out.println("\n[-1 -> Sair]");
                 System.out.println("[ 0 -> Adicionar um produto]");
@@ -70,6 +70,8 @@ public class Main {
                 if(opcaoUsuario < -1 || opcaoUsuario > 5){ // Validar se esta dentro das opções
                     throw new Exception("Opção inválida");
                 }
+
+                break;
 
             } catch (Exception e){
                 e.printStackTrace();
