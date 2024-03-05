@@ -25,6 +25,7 @@ public class Main {
             if(opcaoUsuario == 0) adicionarProduto();
             else if (opcaoUsuario == 1) listarProdutos();
             else if (opcaoUsuario == 2) excluirProduto();
+            else if (opcaoUsuario == 3) buscarProduto();
         }
     }
 
@@ -68,10 +69,11 @@ public class Main {
         Integer opcaoUsuario = null;
         while (opcaoUsuario == null){
             try{
-                System.out.println("[-1 -> Sair]");
+                System.out.println("\n[-1 -> Sair]");
                 System.out.println("[ 0 -> Adicionar um produto]");
                 System.out.println("[ 1 -> Listar produtos]");
                 System.out.println("[ 2 -> Excluir produto]");
+                System.out.println("[ 3 -> Buscar um produto]");
                 System.out.println("\nO que você deseja fazer: ");
 
                 opcaoUsuario = scanner.nextInt();
@@ -140,19 +142,59 @@ public class Main {
 
     public static void excluirProduto(){
 
-
-
         while (true){
-            System.out.println("\nDigite o indíce do produto que deseja exlcuir: ");
+            System.out.println("\nDigite o indíce do produto que deseja excluir: ");
             Integer indiceProduto = scanner.nextInt();
 
             try {
 
-                vetorProdutos.remove(indiceProduto);
+                Produto produtoAExcluir;
+
+                try{
+
+                    produtoAExcluir = (Produto) vetorProdutos.busca(indiceProduto);
+                } catch (Exception e){
+
+                    e.printStackTrace();
+                    continue;
+                }
+
+                System.out.println("\n[0 -> Não quero escolher outro produto], [1 -> Quero excluir esse produto]");
+                System.out.println("\n" + produtoAExcluir);
+
+                System.out.println("Deseja excLuir esse produto:");
+                Integer flagExcluirProduto = scanner.nextInt();
+
+                if(flagExcluirProduto == 1) {
+
+                    vetorProdutos.remove(indiceProduto);
+                    System.out.println("\nProduto excluido com sucesso");
+                    break;
+                }
+
             } catch (Exception e){
 
                 e.printStackTrace();
             }
         }
+        return;
+    }
+
+    public static void buscarProduto(){
+
+        while (true){
+            System.out.println("\nDigite o indíce do produto que deseja buscar: ");
+            Integer indiceProduto = scanner.nextInt();
+
+            try {
+
+                vetorProdutos.remove(indiceProduto);
+                break;
+            } catch (Exception e){
+
+                e.printStackTrace();
+            }
+        }
+        return;
     }
 }
