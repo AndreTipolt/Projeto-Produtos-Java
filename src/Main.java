@@ -11,18 +11,27 @@ public class Main {
         Vetor vetorProdutos;
 
         Integer tamanhoVetor = determinarTamanhoVetor();
-
         vetorProdutos = new Vetor(tamanhoVetor);
 
-        limparTerminal();
+        Integer opcaoUsuario = opcaoUsuario();
 
-        scanner.close();
+        limparTerminal();
 
     }
 
     public static void limparTerminal(){
-        System.out.print("\033[H\033[2J");
-        return;
+        try {
+            final String os = System.getProperty("os.name");
+
+            if (os.contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                Runtime.getRuntime().exec("clear");
+            }
+        } catch (Exception e) {
+            System.out.println("Erro ao limpar o console: " + e.getMessage());
+        }
+
     }
 
     public static Integer determinarTamanhoVetor(){
@@ -44,5 +53,25 @@ public class Main {
             }
         }
         return tamanhoVetor;
+    }
+
+    public static Integer opcaoUsuario(){
+        Integer opcaoUsuario = null;
+        while (opcaoUsuario == null){
+            try{
+                System.out.println("[0 -> Adicionar um produto]");
+                System.out.println("\nO que você deseja fazer: ");
+
+                opcaoUsuario = scanner.nextInt();
+
+                if(opcaoUsuario < 0 || opcaoUsuario > 4){ // Validar se esta dentro das opções
+                    throw new Exception("Opção inválida");
+                }
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        return opcaoUsuario;
     }
 }
